@@ -1,27 +1,29 @@
-<!-- https://developer.wathq.sa/ar/api/16#/ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>js</title>
+    <title>API Request</title>
 </head>
 <body>
-
-
-
-
-
     <script>
+        const apiKey = 'kjMUuvhOZhs8H6UA7Ex5WFKrZowJAH7L'; // Replace with your actual API key
+        const apiUrl = 'https://api.wathq.sa/v4/commercialregistration/info/1011016106'; // Replace with your actual API endpoint
 
+        // Define the headers for the API request
+        const headers = {
+            'accept': 'application/json',
+            'apiKey': apiKey,
+        };
 
-fetch('fullinfo.json').then(function (response){
-    return response.json();
-
-
-
-}).then(function (data) {
-    console.log(data.crName);
+        // Make the API request using fetch
+        fetch(apiUrl, {
+            method: 'GET',
+            headers: headers,
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the API response data here    console.log(data.crName);
     console.log(data.crEntityNumber);
     console.log(data.issueDate);
     console.log(data.expiryDate);
@@ -149,30 +151,11 @@ console.log('urls');
         console.log(data.activities.isic[i].name);
         console.log(data.activities.isic[i].nameEn);
 
-
-        
-    }
-
-
-
-
-
-
-
-    
-})
-
-
-
-
+            // ... (rest of your data processing code)
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     </script>
-
-
-
-
-
-
-
-    
 </body>
 </html>
