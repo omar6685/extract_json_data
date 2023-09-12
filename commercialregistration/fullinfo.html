@@ -67,15 +67,15 @@
 
             // Business Type
             console.log('Business Type');
-            console.log('ID:', data.businessType.id);
-            console.log('Name:', data.businessType.name);
+            console.log('ID:', data.businessType.id || 'N/A');
+            console.log('Name:', data.businessType.name || 'N/A');
 
             // Fiscal Year
             console.log('Fiscal Year');
-            console.log('Month:', data.fiscalYear.month);
-            console.log('Day:', data.fiscalYear.day);
-            console.log('Calendar Type ID:', data.fiscalYear.calendarType.id);
-            console.log('Calendar Type Name:', data.fiscalYear.calendarType.name);
+            console.log('Month:', data.fiscalYear.month || 'N/A');
+            console.log('Day:', data.fiscalYear.day || 'N/A');
+            console.log('Calendar Type ID:', data.fiscalYear.calendarType.id || 'N/A');
+            console.log('Calendar Type Name:', data.fiscalYear.calendarType.name || 'N/A');
 
             // Status Information
             console.log('Status');
