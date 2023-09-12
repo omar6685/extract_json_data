@@ -7,130 +7,143 @@
 </head>
 <body>
     <script>
-        const apiKey = 'kjMUuvhOZhs8H6UA7Ex5WFKrZowJAH7L'; // Replace with your actual API key
-        const apiUrl = 'https://api.wathq.sa/v5/commercialregistration/info/1011016106'; // Replace with your actual API endpoint
+        // Replace with your actual API key and endpoint
+        const apiKey = 'kjMUuvhOZhs8H6UA7Ex5WFKrZowJAH7L';
+        const apiUrl = 'https://api.wathq.sa/v5/commercialregistration/info/1011016106';
 
-        // Define the headers for the API request
         const headers = {
             'accept': 'application/json',
             'apiKey': apiKey,
         };
 
-        // Make the API request using fetch
         fetch(apiUrl, {
             method: 'GET',
             headers: headers,
         })
         .then(response => response.json())
         .then(data => {
-            // Handle the API response data here
-            console.log(data.crName);
-            console.log(data.crEntityNumber);
-            console.log(data.issueDate);
-            console.log(data.expiryDate);
+            // Company Information
+            console.log('Company Name:', data.crName || 'N/A');
+            console.log('Entity Number:', data.crEntityNumber || 'N/A');
+            console.log('Issue Date:', data.issueDate || 'N/A');
+            console.log('Expiry Date:', data.expiryDate || 'N/A');
 
-            console.log('capital');
-            console.log(data.capital.paidAmount);
-            console.log(data.capital.subscribedAmount);
-            console.log(data.capital.announcedAmount);
-
-            console.log('share');
-            console.log(data.capital.share.sharePrice);
-            console.log(data.capital.share.sharesCount);
-
-            console.log(data.crMainNumber);
-
-            console.log('parties');
-            //   console.log(data.parties);
-            let length = data.parties.length;
-            for (let i = 0; i < length; i++) {
-                console.log(data.parties[i].name);
-                console.log(data.parties[i].birthDate);
-                console.log(data.parties[i].sharesCount);
-                console.log(data.parties[i].gross);
-
-                console.log('identity');
-                console.log(data.parties[i].identity.id);
-                console.log(data.parties[i].identity.type);
-
-                console.log('relation');
-                console.log(data.parties[i].relation.id);
-                console.log(data.parties[i].relation.name);
-
-                console.log('nationality');
-                console.log(data.parties[i].nationality.id);
-                console.log(data.parties[i].nationality.name);
+            // Capital Information
+            if (data.capital) {
+                console.log('Capital');
+                console.log('Paid Amount:', data.capital.paidAmount || 'N/A');
+                console.log('Subscribed Amount:', data.capital.subscribedAmount || 'N/A');
+                console.log('Announced Amount:', data.capital.announcedAmount || 'N/A');
+            } else {
+                console.log('Capital data not available');
             }
 
-            console.log('businessType');
-            console.log(data.businessType.id);
-            console.log(data.businessType.name);
+            // Share Information
+            if (data.capital && data.capital.share) {
+                console.log('Share');
+                console.log('Share Price:', data.capital.share.sharePrice || 'N/A');
+                console.log('Shares Count:', data.capital.share.sharesCount || 'N/A');
+            } else {
+                console.log('Share data not available');
+            }
 
-            console.log('fiscalYear');
-            console.log(data.fiscalYear.month);
-            console.log(data.fiscalYear.day);
-            console.log(data.fiscalYear.calendarType.id);
-            console.log(data.fiscalYear.calendarType.name);
+            // Main Number
+            console.log('Main Number:', data.crMainNumber || 'N/A');
 
-            console.log('status');
-            console.log(data.status.id);
-            console.log(data.status.name);
-            console.log(data.status.nameEn);
+            // Parties Information
+            if (data.parties) {
+                console.log('Parties');
+                let length = data.parties.length;
+                for (let i = 0; i < length; i++) {
+                    console.log('Name:', data.parties[i].name || 'N/A');
+                    console.log('Birth Date:', data.parties[i].birthDate || 'N/A');
+                    console.log('Shares Count:', data.parties[i].sharesCount || 'N/A');
+                    console.log('Gross:', data.parties[i].gross || 'N/A');
+                    // ... (add more properties as needed)
+                }
+            } else {
+                console.log('Parties data not available');
+            }
 
-            console.log('cancellation');
-            console.log(data.cancellation.date);
-            console.log(data.cancellation.reason);
+            // Business Type
+            console.log('Business Type');
+            console.log('ID:', data.businessType.id);
+            console.log('Name:', data.businessType.name);
 
-            console.log('address');
-            console.log(data.address.general.website);
-            console.log(data.address.general.address);
-            console.log(data.address.general.email);
-            console.log(data.address.general.fax1);
-            console.log(data.address.general.fax2);
-            console.log(data.address.general.telephone1);
-            console.log(data.address.general.telephone2);
-            console.log(data.address.general.postalBox1);
-            console.log(data.address.general.postalBox2);
+            // Fiscal Year
+            console.log('Fiscal Year');
+            console.log('Month:', data.fiscalYear.month);
+            console.log('Day:', data.fiscalYear.day);
+            console.log('Calendar Type ID:', data.fiscalYear.calendarType.id);
+            console.log('Calendar Type Name:', data.fiscalYear.calendarType.name);
 
-            console.log('national');
-            console.log(data.address.national.buildingNumber);
-            console.log(data.address.national.additionalNumber);
-            console.log(data.address.national.streetName);
-            console.log(data.address.national.city);
-            console.log(data.address.national.zipcode);
-            console.log(data.address.national.unitNumber);
-            console.log(data.address.national.district.id);
-            console.log(data.address.national.district.name);
+            // Status Information
+            console.log('Status');
+            console.log('ID:', data.status.id);
+            console.log('Name:', data.status.name);
+            console.log('Name (English):', data.status.nameEn);
 
-            console.log(data.isEcommerce);
+            // Cancellation Information
+            console.log('Cancellation');
+            console.log('Date:', data.cancellation.date);
+            console.log('Reason:', data.cancellation.reason);
 
-            console.log('urls');
-            //console.log(data.urls);
+            // Address Information
+            console.log('Address');
+            console.log('Website:', data.address.general.website);
+            console.log('Address:', data.address.general.address);
+            console.log('Email:', data.address.general.email);
+            console.log('Fax 1:', data.address.general.fax1);
+            console.log('Fax 2:', data.address.general.fax2);
+            console.log('Telephone 1:', data.address.general.telephone1);
+            console.log('Telephone 2:', data.address.general.telephone2);
+            console.log('Postal Box 1:', data.address.general.postalBox1);
+            console.log('Postal Box 2:', data.address.general.postalBox2);
+
+            // National Address Information
+            console.log('National Address');
+            console.log('Building Number:', data.address.national.buildingNumber);
+            console.log('Additional Number:', data.address.national.additionalNumber);
+            console.log('Street Name:', data.address.national.streetName);
+            console.log('City:', data.address.national.city);
+            console.log('Zipcode:', data.address.national.zipcode);
+            console.log('Unit Number:', data.address.national.unitNumber);
+            console.log('District ID:', data.address.national.district.id);
+            console.log('District Name:', data.address.national.district.name);
+
+            console.log('Is E-commerce:', data.isEcommerce);
+
+            // URLs Information
+            console.log('URLs');
             let urlslength = data.urls.length;
             for (let i = 0; i < urlslength; i++) {
-                console.log(data.urls[i].name);
-                console.log(data.urls[i].type);
-                console.log(data.urls[i].typeId);
+                console.log('Name:', data.urls[i].name);
+                console.log('Type:', data.urls[i].type);
+                console.log('TypeID:', data.urls[i].typeId);
             }
 
-            console.log('location');
-            console.log(data.location.id);
-            console.log(data.location.name);
-            console.log('company');
-            console.log(data.company.period);
-            console.log(data.company.startDate);
-            console.log(data.company.endDate);
+            // Location Information
+            console.log('Location');
+            console.log('ID:', data.location.id);
+            console.log('Name:', data.location.name);
 
-            console.log('activities');
-            console.log(data.activities.description);
+            // Company Information
+            console.log('Company');
+            console.log('Period:', data.company.period);
+            console.log('Start Date:', data.company.startDate);
+            console.log('End Date:', data.company.endDate);
 
-            console.log('isic');
+            // Activities Information
+            console.log('Activities');
+            console.log('Description:', data.activities.description);
 
+            // ISIC Information
+            console.log('ISIC Codes');
             let isiclength = data.activities.isic.length;
             for (let i = 0; i < isiclength; i++) {
-                console.log(data.activities.isic[i].id);
-                console.log(data.activities.isic[i].name);
-                console.log(data.activities.isic[i].nameEn);
+                console.log('ID:', data.activities.isic[i].id);
+                console.log('Name:', data.activities.isic[i].name);
+                console.log('Name (English):', data.activities.isic[i].nameEn);
             }
         })
         .catch(error => {
