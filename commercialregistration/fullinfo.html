@@ -64,87 +64,133 @@
             } else {
                 console.log('Parties data not available');
             }
+// Business Type
+if (data.businessType) {
+    console.log('Business Type');
+    console.log('ID:', data.businessType.id || 'N/A');
+    console.log('Name:', data.businessType.name || 'N/A');
+} else {
+    console.log('Business Type data not available');
+}
+// Fiscal Year
+if (data.fiscalYear) {
+    console.log('Fiscal Year');
+    console.log('Month:', data.fiscalYear.month || 'N/A');
+    console.log('Day:', data.fiscalYear.day || 'N/A');
+    if (data.fiscalYear.calendarType) {
+        console.log('Calendar Type ID:', data.fiscalYear.calendarType.id || 'N/A');
+        console.log('Calendar Type Name:', data.fiscalYear.calendarType.name || 'N/A');
+    } else {
+        console.log('Calendar Type data not available');
+    }
+} else {
+    console.log('Fiscal Year data not available');
+}
 
-            // Business Type
-            console.log('Business Type');
-            console.log('ID:', data.businessType.id || 'N/A');
-            console.log('Name:', data.businessType.name || 'N/A');
+// Status Information
+if (data.status) {
+    console.log('Status');
+    console.log('ID:', data.status.id || 'N/A');
+    console.log('Name:', data.status.name || 'N/A');
+    console.log('Name (English):', data.status.nameEn || 'N/A');
+} else {
+    console.log('Status data not available');
+}
+// Cancellation Information
+if (data.cancellation) {
+    console.log('Cancellation');
+    console.log('Date:', data.cancellation.date || 'N/A');
+    console.log('Reason:', data.cancellation.reason || 'N/A');
+} else {
+    console.log('Cancellation data not available');
+}
 
-            // Fiscal Year
-            console.log('Fiscal Year');
-            console.log('Month:', data.fiscalYear.month || 'N/A');
-            console.log('Day:', data.fiscalYear.day || 'N/A');
-            console.log('Calendar Type ID:', data.fiscalYear.calendarType.id || 'N/A');
-            console.log('Calendar Type Name:', data.fiscalYear.calendarType.name || 'N/A');
+// Address Information
+if (data.address && data.address.general) {
+    console.log('Address');
+    console.log('Website:', data.address.general.website || 'N/A');
+    console.log('Address:', data.address.general.address || 'N/A');
+    console.log('Email:', data.address.general.email || 'N/A');
+    console.log('Fax 1:', data.address.general.fax1 || 'N/A');
+    console.log('Fax 2:', data.address.general.fax2 || 'N/A');
+    console.log('Telephone 1:', data.address.general.telephone1 || 'N/A');
+    console.log('Telephone 2:', data.address.general.telephone2 || 'N/A');
+    console.log('Postal Box 1:', data.address.general.postalBox1 || 'N/A');
+    console.log('Postal Box 2:', data.address.general.postalBox2 || 'N/A');
+} else {
+    console.log('Address data not available');
+}
+// National Address Information
+if (data.address && data.address.national) {
+    console.log('National Address');
+    console.log('Building Number:', data.address.national.buildingNumber || 'N/A');
+    console.log('Additional Number:', data.address.national.additionalNumber || 'N/A');
+    console.log('Street Name:', data.address.national.streetName || 'N/A');
+    console.log('City:', data.address.national.city || 'N/A');
+    console.log('Zipcode:', data.address.national.zipcode || 'N/A');
+    console.log('Unit Number:', data.address.national.unitNumber || 'N/A');
+    if (data.address.national.district) {
+        console.log('District ID:', data.address.national.district.id || 'N/A');
+        console.log('District Name:', data.address.national.district.name || 'N/A');
+    } else {
+        console.log('District data not available');
+    }
+} else {
+    console.log('National Address data not available');
+}
 
-            // Status Information
-            console.log('Status');
-            console.log('ID:', data.status.id);
-            console.log('Name:', data.status.name);
-            console.log('Name (English):', data.status.nameEn);
+// Is E-commerce
+console.log('Is E-commerce:', data.isEcommerce || 'N/A');
 
-            // Cancellation Information
-            console.log('Cancellation');
-            console.log('Date:', data.cancellation.date);
-            console.log('Reason:', data.cancellation.reason);
+// URLs Information
+console.log('URLs');
+let urlslength = data.urls ? data.urls.length : 0;
+for (let i = 0; i < urlslength; i++) {
+    console.log('Name:', data.urls[i].name || 'N/A');
+    console.log('Type:', data.urls[i].type || 'N/A');
+    console.log('TypeID:', data.urls[i].typeId || 'N/A');
+}
 
-            // Address Information
-            console.log('Address');
-            console.log('Website:', data.address.general.website);
-            console.log('Address:', data.address.general.address);
-            console.log('Email:', data.address.general.email);
-            console.log('Fax 1:', data.address.general.fax1);
-            console.log('Fax 2:', data.address.general.fax2);
-            console.log('Telephone 1:', data.address.general.telephone1);
-            console.log('Telephone 2:', data.address.general.telephone2);
-            console.log('Postal Box 1:', data.address.general.postalBox1);
-            console.log('Postal Box 2:', data.address.general.postalBox2);
+// Location Information
+if (data.location) {
+    console.log('Location');
+    console.log('ID:', data.location.id || 'N/A');
+    console.log('Name:', data.location.name || 'N/A');
+} else {
+    console.log('Location data not available');
+}
 
-            // National Address Information
-            console.log('National Address');
-            console.log('Building Number:', data.address.national.buildingNumber);
-            console.log('Additional Number:', data.address.national.additionalNumber);
-            console.log('Street Name:', data.address.national.streetName);
-            console.log('City:', data.address.national.city);
-            console.log('Zipcode:', data.address.national.zipcode);
-            console.log('Unit Number:', data.address.national.unitNumber);
-            console.log('District ID:', data.address.national.district.id);
-            console.log('District Name:', data.address.national.district.name);
+// Company Information
+if (data.company) {
+    console.log('Company');
+    console.log('Period:', data.company.period || 'N/A');
+    console.log('Start Date:', data.company.startDate || 'N/A');
+    console.log('End Date:', data.company.endDate || 'N/A');
+} else {
+    console.log('Company data not available');
+}
 
-            console.log('Is E-commerce:', data.isEcommerce);
+// Activities Information
+if (data.activities) {
+    console.log('Activities');
+    console.log('Description:', data.activities.description || 'N/A');
+} else {
+    console.log('Activities data not available');
+}
 
-            // URLs Information
-            console.log('URLs');
-            let urlslength = data.urls.length;
-            for (let i = 0; i < urlslength; i++) {
-                console.log('Name:', data.urls[i].name);
-                console.log('Type:', data.urls[i].type);
-                console.log('TypeID:', data.urls[i].typeId);
-            }
+// ISIC Information
+if (data.activities && data.activities.isic) {
+    console.log('ISIC Codes');
+    let isiclength = data.activities.isic.length;
+    for (let i = 0; i < isiclength; i++) {
+        console.log('ID:', data.activities.isic[i].id || 'N/A');
+        console.log('Name:', data.activities.isic[i].name || 'N/A');
+        console.log('Name (English):', data.activities.isic[i].nameEn || 'N/A');
+    }
+} else {
+    console.log('ISIC data not available');
+}
 
-            // Location Information
-            console.log('Location');
-            console.log('ID:', data.location.id);
-            console.log('Name:', data.location.name);
-
-            // Company Information
-            console.log('Company');
-            console.log('Period:', data.company.period);
-            console.log('Start Date:', data.company.startDate);
-            console.log('End Date:', data.company.endDate);
-
-            // Activities Information
-            console.log('Activities');
-            console.log('Description:', data.activities.description);
-
-            // ISIC Information
-            console.log('ISIC Codes');
-            let isiclength = data.activities.isic.length;
-            for (let i = 0; i < isiclength; i++) {
-                console.log('ID:', data.activities.isic[i].id);
-                console.log('Name:', data.activities.isic[i].name);
-                console.log('Name (English):', data.activities.isic[i].nameEn);
-            }
         })
         .catch(error => {
             console.error('Error:', error);
